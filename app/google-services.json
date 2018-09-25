@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "892941247618",
+    "firebase_url": "https://universallocator-6bc9c.firebaseio.com",
+    "project_id": "universallocator-6bc9c",
+    "storage_bucket": "universallocator-6bc9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892941247618:android:112c6ea3daa9bf55",
+        "android_client_info": {
+          "package_name": "com.universalinfatech.apps.universallocator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892941247618-dfimagbe8npgni099sv83b93urt0e443.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.universalinfatech.apps.universallocator",
+            "certificate_hash": "da500a190d1a867458627a15609ea16e05cba6eb"
+          }
+        },
+        {
+          "client_id": "892941247618-4rn5hfgvlrqu5oritr3l22v6rocrosnv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCZNQuo7a0ztIcAV9QONLko95sqhYs3q0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892941247618-4rn5hfgvlrqu5oritr3l22v6rocrosnv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
