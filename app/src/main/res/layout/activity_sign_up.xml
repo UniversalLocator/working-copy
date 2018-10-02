@@ -34,6 +34,37 @@
             android:textSize="14dp"
             android:paddingRight="10dp"
             android:layout_gravity="center"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.facebook.login.widget.LoginButton
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:id="@+id/button_facebook_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/btnfb"
+            android:layout_weight="1"
+            android:background="#4267B2"
+            android:layout_margin="4dp"
+            android:text="Log In"
+            android:textColor="#fff"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:drawablePadding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +81,6 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"/>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +90,6 @@
             android:textAlignment="center"
             android:textColor="#104566"
             android:textSize="16sp" />
-
         <EditText
             android:id="@+id/phoneno"
             android:layout_width="match_parent"
