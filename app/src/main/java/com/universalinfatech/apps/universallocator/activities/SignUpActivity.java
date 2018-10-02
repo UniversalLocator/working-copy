@@ -3,14 +3,13 @@ package com.universalinfatech.apps.universallocator.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -27,10 +26,13 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-//import com.google.firebase.firestore.FirebaseFirestore;
 import com.universalinfatech.apps.universallocator.R;
+import com.universalinfatech.apps.universallocator.others.SmsListener;
+import com.universalinfatech.apps.universallocator.others.SmsReceiver;
 
 import java.util.concurrent.TimeUnit;
+
+//import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -42,8 +44,9 @@ public class SignUpActivity extends AppCompatActivity {
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private TextView _tv;
+    String otp_generated;
     private EditText editTextph,editTextotp;
-    private Button btnMobile,btnSubmit;
+    private Button btnMobile,btnSubmit,btnEmail;
     private LinearLayout linearOption, linearMobile;
     ProgressDialog progressDialog;
 
@@ -53,6 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         context = this;
         btnMobile = (Button) findViewById(R.id.btnMobile);
+        btnEmail = (Button) findViewById(R.id.btnEmail);
         editTextph = (EditText) findViewById(R.id.phoneno);
         _tv = (TextView) findViewById( R.id.textView1 );
         editTextotp = (EditText) findViewById(R.id.otptxt);
@@ -67,6 +71,15 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 linearOption.setVisibility(View.GONE);
                 linearMobile.setVisibility(View.VISIBLE);
+
+            }
+        });
+        btnEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,EmailActivity.class);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -192,13 +205,28 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        SmsReceiver.bindListener(new SmsListener() {
+            @Override
+            public void messageReceived(String messageText) {
+                editTextotp.setText(messageText);
+            }
+        });
         _tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resendVerificationCode(editTextph.getText().toString(),
-                        mResendToken);
+                try {
+                    InputMethodManager imm =
+                            (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    resendVerificationCode(editTextph.getText().toString(),
+                            mResendToken);
+                } catch (Exception e) {
+                }
+                if (editTextotp.getText().toString().equals(otp_generated)) {
+                    Toast.makeText(context, "OTP Verified Successfully !", Toast.LENGTH_SHORT).show();
+                }
             }
-        });
+            });
 
     }
 
