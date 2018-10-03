@@ -51,7 +51,7 @@ import java.util.concurrent.TimeUnit;
 
 //import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SignUpActivity extends AppCompatActivity  implements
+public class PhoneActivity extends AppCompatActivity  implements
         GoogleApiClient.OnConnectionFailedListener{
 
     private Context context;
