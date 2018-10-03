@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.universalinfatech.apps.universallocator.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegistationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
