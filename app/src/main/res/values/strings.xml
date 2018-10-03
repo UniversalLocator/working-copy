@@ -7,4 +7,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="webapi_string">892941247618-4rn5hfgvlrqu5oritr3l22v6rocrosnv.apps.googleusercontent.com</string>
+    <string name="FACEBOOK_APP_ID">1679947295444403</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">59617301e46dd4ba80cfeeb35b570f9b</string>
 </resources>

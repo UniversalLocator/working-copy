@@ -51,8 +51,7 @@ import java.util.concurrent.TimeUnit;
 
 //import com.google.firebase.firestore.FirebaseFirestore;
 
-public class PhoneActivity extends AppCompatActivity  implements
-        GoogleApiClient.OnConnectionFailedListener{
+public class PhoneActivity extends AppCompatActivity{
 
     private Context context;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -78,60 +77,16 @@ public class PhoneActivity extends AppCompatActivity  implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         context = this;
-        btnMobile = (Button) findViewById(R.id.btnMobile);
-        btnEmail = (Button) findViewById(R.id.btnEmail);
+
         editTextph = (EditText) findViewById(R.id.phoneno);
-        _tv = (TextView) findViewById( R.id.textView1 );
+        _tv = (TextView) findViewById(R.id.textView1 );
         editTextotp = (EditText) findViewById(R.id.otptxt);
         btnSubmit = (Button) findViewById(R.id.submit);
         linearOption = (LinearLayout) findViewById(R.id.linearOptions);
         linearMobile = (LinearLayout) findViewById(R.id.linearMobile);
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
-        btnGoogle = (SignInButton) findViewById(R.id.sign_in_button);
-        //btnFacebook = (LoginButton) findViewById(R.id.button_facebook_login);
-        btnfb = (TextView) findViewById(R.id.btnfb);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.webapi_string))
-                .requestEmail()
-                .build();
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        btnMobile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearOption.setVisibility(View.GONE);
-                linearMobile.setVisibility(View.VISIBLE);
-
-            }
-        });
-        btnEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,EmailActivity.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signInGoogle();
-            }
-        });
-        btnfb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //btnFacebook.performClick();
-
-            }
-        });
         mAuth = FirebaseAuth.getInstance();
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -279,61 +234,8 @@ public class PhoneActivity extends AppCompatActivity  implements
 
     }
 
-    private void signInGoogle() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
-        Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            } else {
-                Toast.makeText(context, "Oops! something went wrong.." ,Toast.LENGTH_LONG).show();
-            }
-        } else{
-            //mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            final FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(context, user.getUid(),
-                                    Toast.LENGTH_SHORT).show();
 
 
-                        } else {
-                            googleSignout();
-                            Toast.makeText(context, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            Toast.makeText(context, task.getException().getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-
-                    }
-                });
-    }
 
 
     public boolean validate(){
@@ -440,15 +342,5 @@ public class PhoneActivity extends AppCompatActivity  implements
                 token);             // ForceResendingToken from callbacks
     }
 
-    public static void googleSignout(){
 
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-
-                        //Toast.makeText(context, "successfully signedout", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 }

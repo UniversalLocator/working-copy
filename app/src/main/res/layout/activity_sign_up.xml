@@ -6,66 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.PhoneActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/linearOptions">
-        <Button
-            android:id="@+id/btnMobile"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign Up using Phone No"
-            android:textColor="#fff"
-            android:paddingLeft="10dp"
-            android:textSize="14dp"
-            android:paddingRight="10dp"
-            android:layout_gravity="center"/>
 
-        <Button
-            android:id="@+id/btnEmail"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign Up using Email"
-            android:textColor="#fff"
-            android:paddingLeft="10dp"
-            android:textSize="14dp"
-            android:paddingRight="10dp"
-            android:layout_gravity="center"/>
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.facebook.login.widget.LoginButton
-            android:layout_weight="1"
-            android:visibility="gone"
-            android:id="@+id/button_facebook_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_alignParentRight="true"/>
-
-        <TextView
-            android:id="@+id/btnfb"
-            android:layout_weight="1"
-            android:background="#4267B2"
-            android:layout_margin="4dp"
-            android:text="Log In"
-            android:textColor="#fff"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:textAlignment="center"
-            android:drawablePadding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="20dp"
